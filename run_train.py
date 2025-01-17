@@ -140,6 +140,8 @@ def parse_comma_separated_list(s):
 @click.option('--data',         help='Training data',               metavar='[ZIP|DIR]',    type=str)
 @click.option('--gpus',         help='Number of GPUs to use',       metavar='INT',          type=click.IntRange(min=1))
 @click.option('--batch',        help='Total batch size',            metavar='INT',          type=click.IntRange(min=1))
+@click.option('--imgsize',      help='Input image size',            metavar='INT',          type=click.IntRange(min=1), default=512)
+
 
 # Optional features.
 @click.option('--cond',         help='Train conditional model', metavar='BOOL',                 type=bool, default=False, show_default=True)
