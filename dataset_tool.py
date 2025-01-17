@@ -75,6 +75,12 @@ def png_to_rgb(arr):
     return np.array(background)
 
 #----------------------------------------------------------------------------
+def convert_to_rgb_if_needed(img):
+    # 1채널 이미지를 3채널로 변환
+    if img.ndim == 2 or (img.ndim == 3 and img.shape[2] == 1):
+        img = PIL.Image.fromarray(img).convert("RGB")
+        img = np.array(img)
+    return img
 
 def open_image_folder(source_dir, *, max_images: Optional[int]):
     input_images = [str(f) for f in sorted(Path(source_dir).rglob('*')) if is_image_ext(f) and os.path.isfile(f)]
@@ -103,9 +109,13 @@ def open_image_folder(source_dir, *, max_images: Optional[int]):
             if img.shape[-1] == 4:
                 img = png_to_rgb(img)
 
+            # Convert 1-channel images to 3-channel.
+            img = convert_to_rgb_if_needed(img)
+
             yield dict(img=img, label=labels.get(arch_fname))
             if idx >= max_idx-1:
                 break
+                
     return max_idx, iterate_images()
 
 #----------------------------------------------------------------------------
