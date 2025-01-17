@@ -59,17 +59,4 @@ cmd = ocmd.format(
 	mhyp.mirror)
 print(cmd)
 os.system(cmd)
-print("train load done")
-
-    # opts.outdir = mpfm.train_result
-    # opts.data = f'{mpfm.train_path}/train.zip'
-    # opts.imgsize = mhyp.imgsize
-    # opts.cfg = mhyp.cfg
-    # opts.gpus = mhyp.gpus
-    # opts.batch = mhyp.batch
-    # opts.batch_gpu = mhyp.batch_gpu
-    # opts.kimg = mhyp.kimg
-    # opts.workers = mhyp.workers
-    # opts.snap = mhyp.snap
-    # opts.syn_layers = mhyp.syn_layers
-    # opts.mirror = mhyp.mirror
+print("train done")
