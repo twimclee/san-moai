@@ -19,7 +19,7 @@ opt = parser.parse_args()
 #######################################################################
 # load hyp
 #######################################################################
-mpfm = MPathFileManager(opts.volume, opts.project, opts.subproject, opts.task, opts.version)
+mpfm = MPathFileManager(opt.volume, opt.project, opt.subproject, opt.task, opt.version)
 mhyp = MHyp()
 mpfm.load_train_hyp(mhyp)
 mpfm.save_hyp(mhyp)
