@@ -24,8 +24,11 @@ from torch_utils import training_stats
 from torch_utils import custom_ops
 from torch_utils import misc
 
+from data_tool import convert_dataset
+
 from pathfilemgr import MPathFileManager
 from hyp_data import MHyp, MData
+
 
 #----------------------------------------------------------------------------
 
@@ -195,7 +198,7 @@ def main(**kwargs):
     mpfm.save_hyp(mhyp)
 
     opts.outdir = mpfm.train_result
-    opts.data = mpfm.train_path
+    opts.data = f'{mpfm.train_path}/train.zip'
     opts.imgsize = mhyp.imgsize
     opts.cfg = mhyp.cfg
     opts.gpus = mhyp.gpus
@@ -206,6 +209,10 @@ def main(**kwargs):
     opts.snap = mhyp.snap
     opts.syn_layers = mhyp.syn_layers
     opts.mirror = mhyp.mirror
+
+
+    print('image compressing...')
+    convert_dataset(mpfm.train_path, opts.data, 99999, None, [opts.imgsize,opts.imgsize])
 
 
     c = dnnlib.EasyDict()  # Main config dict.
