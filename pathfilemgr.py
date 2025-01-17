@@ -19,6 +19,7 @@ class MPathFileManager:
 		self.test_dataset = None
 		self.test_result = None
 		self.train_path = None
+		self.train_data = None
 		self.val_path = None
 
 		self.hyp_yaml = None
@@ -59,6 +60,10 @@ class MPathFileManager:
 		self.train_dataset = f'{self.task_path}/train_dataset'
 		self.train_path = f'{self.train_dataset}/train'
 		self.val_path = f'{self.train_dataset}/valid'
+
+		self.train_data = f'{self.train_path}/cmp'
+		self.__make_dir(self.train_data)
+		self.train_data = f'{self.train_data}/train_data.zip'
 
 		self.hyp_yaml = f'{self.task_path}/train_dataset/hyp.yaml'
 		self.data_yaml = f'{self.task_path}/train_dataset/data.yaml'

@@ -32,7 +32,7 @@ ocmd = r'python dataset_tool.py --source {} --dest {} --resolution {}'
 
 cmd = ocmd.format(
 	mpfm.train_path,
-	f'{mpfm.train_path}/train.zip',
+	mpfm.train_data,
 	f'{mhyp.imgsize}x{mhyp.imgsize}'
 	)
 print(cmd)
@@ -46,7 +46,7 @@ ocmd = r'python run_train.py --outdir {} --data {} --imgsize {} --cfg {} --gpus 
 
 cmd = ocmd.format(
 	mpfm.train_result, 
-	f'{mpfm.train_path}/train.zip', 
+	mpfm.train_data, 
 	mhyp.imgsize, 
 	mhyp.cfg, 
 	mhyp.gpus, 
