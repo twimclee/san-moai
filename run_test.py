@@ -21,6 +21,8 @@ import torch
 import legacy
 from torch_utils import gen_utils
 
+import datetime
+
 #----------------------------------------------------------------------------
 
 def parse_range(s: Union[str, List]) -> List[int]:
@@ -98,7 +100,7 @@ def generate_images(
         G = legacy.load_network_pkl(f)['G_ema']
         G = G.eval().requires_grad_(False).to(device)
 
-    os.makedirs(outdir, exist_ok=True)
+    # os.makedirs(outdir, exist_ok=True)
 
     # Generate images.
     for seed_idx, seed in enumerate(seeds):
@@ -116,12 +118,15 @@ def generate_images(
                                       centroids_path=centroids_path, class_idx=class_idx)
         img = gen_utils.w_to_img(G, w, to_np=True)
 
+        current_datetime = datetime.datetime.now()
+        unique_id = current_datetime.strftime("%Y%m%d_%H%M%S")
+
         # 생성된 이미지 저장 경로
-        seed_outdir = os.path.join(outdir, f'seed{seed:04d}')
-        os.makedirs(seed_outdir, exist_ok=True)
+        # seed_outdir = os.path.join(outdir, f'seed{seed:04d}')
+        # os.makedirs(seed_outdir, exist_ok=True)
 
         # 이미지 저장
-        PIL.Image.fromarray(gen_utils.create_image_grid(img), 'RGB').save(f'{seed_outdir}/image_{seed:04d}.png')
+        PIL.Image.fromarray(gen_utils.create_image_grid(img), 'RGB').save(f'{outdir}/image_{unique_id}.png')
 
         # PIL.Image.fromarray(gen_utils.create_image_grid(img), 'RGB').save(f'{outdir}/seed{seed:04d}.png')
 

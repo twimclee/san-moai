@@ -28,7 +28,7 @@ mpfm.save_hyp(mhyp)
 #######################################################################
 # train
 #######################################################################
-ocmd = r'python run_test.py --outdir {} --seeds 0-1 --batch-sz 1 --network {}'
+ocmd = r'python run_test.py --outdir {} --seeds 0 --batch-sz 1 --network {}'
 
 cmd = ocmd.format(
 	mpfm.test_result,
